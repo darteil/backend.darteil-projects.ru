@@ -3,44 +3,41 @@ name: CI
 on:
   push:
     branches:
-    - master
+      - master
 
 jobs:
   deploy:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v1
 
-    - name: Create env
-      run: |
-        touch .env
-        echo ${{ secrets.PORT }} >> .env
-        echo ${{ secrets.MAIL_HOST }} >> .env
-        echo ${{ secrets.MAIL_PORT }} >> .env
-        echo ${{ secrets.MAIL_USER }} >> .env
-        echo ${{ secrets.MAIL_PASS }} >> .env
-        echo ${{ secrets.MAIL_ADMIN }} >> .env
+      - name: Create env
+        run: |
+          touch .env
+          echo ${{ secrets.PORT }} >> .env
+          echo ${{ secrets.MAIL_HOST }} >> .env
+          echo ${{ secrets.MAIL_PORT }} >> .env
+          echo ${{ secrets.MAIL_USER }} >> .env
+          echo ${{ secrets.MAIL_PASS }} >> .env
+          echo ${{ secrets.MAIL_ADMIN }} >> .env
 
-    - name: Deploy
-      uses: appleboy/scp-action@v0.0.4
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.SSH_USER_NAME }}
-        password: ${{ secrets.SSH_USER_PASS }}
-        port: 22
-        source: "./"
-        target: "/var/www/backend"
-     
-    - name: SSH Remote Commands
-      uses: appleboy/ssh-action@v0.0.4
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.SSH_USER_NAME }}
-        password: ${{ secrets.SSH_USER_PASS }}
-        port: 22
-        script: |
-          cd /var/www/backend/
-          npm i
-          npm run build
+      - name: Deploy
+        uses: appleboy/scp-action@v0.0.4
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.SSH_USER_NAME }}
+          password: ${{ secrets.SSH_USER_PASS }}
+          source: './'
+          target: '/var/www/backend'
+
+      - name: SSH Remote Commands
+        uses: appleboy/ssh-action@v0.0.4
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.SSH_USER_NAME }}
+          password: ${{ secrets.SSH_USER_PASS }}
+          script: |
+            cd /var/www/backend/
+            npm i
+            npm run build
