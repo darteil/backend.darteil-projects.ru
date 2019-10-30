@@ -38,6 +38,9 @@ jobs:
           username: ${{ secrets.SSH_USER_NAME }}
           password: ${{ secrets.SSH_USER_PASS }}
           script: |
+            rm -rf /var/www/backend/
+            mkdir /var/www/backend/
             cd /var/www/backend/
+            ls -all
             npm i
             npm run build
