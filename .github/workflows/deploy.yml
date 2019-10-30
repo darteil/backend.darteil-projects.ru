@@ -1,4 +1,4 @@
-name: CI
+name: Deploy
 
 on:
   push:
@@ -22,16 +22,7 @@ jobs:
           echo ${{ secrets.MAIL_PASS }} >> .env
           echo ${{ secrets.MAIL_ADMIN }} >> .env
 
-      - name: Deploy
-        uses: appleboy/scp-action@v0.0.4
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER_NAME }}
-          password: ${{ secrets.SSH_USER_PASS }}
-          source: '.'
-          target: '/var/www/backend'
-
-      - name: SSH Remote Commands
+      - name: SSH clean backend
         uses: appleboy/ssh-action@v0.0.4
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -40,7 +31,12 @@ jobs:
           script: |
             rm -rf /var/www/backend/
             mkdir /var/www/backend/
-            cd /var/www/backend/
-            ls -all
-            npm i
-            npm run build
+
+      - name: Deploy
+        uses: appleboy/scp-action@v0.0.4
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER_NAME }}
+          password: ${{ secrets.SSH_USER_PASS }}
+          source: '.'
+          target: '/var/www/backend'
