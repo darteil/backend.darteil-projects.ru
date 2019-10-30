@@ -1,0 +1,45 @@
+{
+  "name": "backend.darteil-projects.ru",
+  "version": "1.0.0",
+  "description": "Backend for darteil-projects.ru",
+  "main": "server.ts",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint --cache --ext .js,.ts src",
+    "build": "./node_modules/.bin/tsc",
+    "serve": "./node_modules/.bin/ts-node src/server.ts",
+    "start": "./node_modules/.bin/nodemon",
+    "start:prod": "node dist/server.js"
+  },
+  "author": "Romanov Yuri",
+  "license": "MIT",
+  "dependencies": {
+    "@types/nodemailer": "^6.2.2",
+    "dotenv": "^8.2.0",
+    "koa": "^2.11.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^7.4.0",
+    "nodemailer": "^6.3.1",
+    "reflect-metadata": "^0.1.13",
+    "sqlite3": "^4.1.0",
+    "typeorm": "^0.2.20"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.0.51",
+    "@types/koa-bodyparser": "^4.3.0",
+    "@types/koa-json": "^2.0.18",
+    "@types/koa-logger": "^3.1.1",
+    "@types/koa-router": "^7.0.42",
+    "@types/node": "^12.11.7",
+    "@typescript-eslint/eslint-plugin": "^2.5.0",
+    "@typescript-eslint/parser": "^2.5.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "nodemon": "^1.19.4",
+    "prettier": "^1.18.2",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.4"
+  }
+}
