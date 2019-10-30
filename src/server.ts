@@ -5,7 +5,7 @@ import databaseConnection from './database/database.connection';
 
 databaseConnection
   .then(() => {
-    app.listen(process.env.PORT, () => {
+    app.listen(process.env.APP_PORT, () => {
       console.log('Koa started');
     });
   })
