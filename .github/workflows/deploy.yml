@@ -15,7 +15,7 @@ jobs:
       - name: Create env
         run: |
           touch .env
-          echo ${{ secrets.PORT }} >> .env
+          echo ${{ secrets.APP_PORT }} >> .env
           echo ${{ secrets.MAIL_HOST }} >> .env
           echo ${{ secrets.MAIL_PORT }} >> .env
           echo ${{ secrets.MAIL_USER }} >> .env
@@ -25,10 +25,10 @@ jobs:
       - name: Deploy
         uses: appleboy/scp-action@v0.0.4
         with:
-          host: ${{ secrets.HOST }}
+          host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER_NAME }}
           password: ${{ secrets.SSH_USER_PASS }}
-          source: './'
+          source: '.'
           target: '/var/www/backend'
 
       - name: SSH Remote Commands
