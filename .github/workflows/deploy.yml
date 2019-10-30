@@ -30,7 +30,7 @@ jobs:
         username: ${{ secrets.SSH_USER_NAME }}
         password: ${{ secrets.SSH_USER_PASS }}
         port: 22
-        source: "."
+        source: "./"
         target: "/var/www/backend"
      
     - name: SSH Remote Commands
