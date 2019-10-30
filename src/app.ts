@@ -17,10 +17,15 @@ router.get('/', async (ctx, next) => {
   await next();
 });
 
+app.use(
+  cors({
+    origin: '*',
+    allowHeaders: ['Content-Type', 'Accept'],
+  }),
+);
 app.use(json());
 app.use(logger());
 app.use(bodyParser());
-app.use(cors());
 
 app.use(router.routes()).use(router.allowedMethods());
 app.use(messageController.routes());
