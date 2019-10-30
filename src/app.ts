@@ -1,6 +1,7 @@
 import * as Koa from 'koa';
 import * as Router from 'koa-router';
 import * as bodyParser from 'koa-bodyparser';
+import * as cors from '@koa/cors';
 
 import * as logger from 'koa-logger';
 import * as json from 'koa-json';
@@ -19,6 +20,7 @@ router.get('/', async (ctx, next) => {
 app.use(json());
 app.use(logger());
 app.use(bodyParser());
+app.use(cors());
 
 app.use(router.routes()).use(router.allowedMethods());
 app.use(messageController.routes());
