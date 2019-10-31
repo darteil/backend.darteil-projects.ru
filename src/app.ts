@@ -12,17 +12,12 @@ const app = new Koa();
 const router = new Router();
 
 router.get('/', async (ctx, next) => {
-  ctx.body = { msg: 'Koa_js app working...' };
+  ctx.body = { msg: 'Backend is working...' };
 
   await next();
 });
 
-app.use(
-  cors({
-    origin: '*',
-    allowHeaders: ['Content-Type', 'Accept'],
-  }),
-);
+app.use(cors());
 app.use(json());
 app.use(logger());
 app.use(bodyParser());
