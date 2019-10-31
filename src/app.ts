@@ -17,7 +17,12 @@ router.get('/', async (ctx, next) => {
   await next();
 });
 
-app.use(cors());
+app.use(
+  cors({
+    origin: '*',
+    allowHeaders: ['Content-Type', 'Accept'],
+  }),
+);
 app.use(json());
 app.use(logger());
 app.use(bodyParser());
