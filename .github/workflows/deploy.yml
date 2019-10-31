@@ -40,3 +40,15 @@ jobs:
           password: ${{ secrets.SSH_USER_PASS }}
           source: '.'
           target: '/var/www/backend'
+
+      - name: SSH remote commands
+        uses: appleboy/ssh-action@v0.0.4
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER_NAME }}
+          password: ${{ secrets.SSH_USER_PASS }}
+          script: |
+            source ~/.bashrc
+            cd /var/www/backend/
+            npm i
+            npm run build
