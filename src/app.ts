@@ -12,7 +12,7 @@ const app = new Koa();
 const router = new Router();
 
 router.get('/', async (ctx, next) => {
-  ctx.body = { msg: 'Backend is working...' };
+  ctx.body = { msg: 'Server is working...' };
 
   await next();
 });
