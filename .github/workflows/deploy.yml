@@ -50,5 +50,4 @@ jobs:
           script: |
             source ~/.bashrc
             cd /var/www/backend/
-            npm i
-            npm run build
+            ./install.sh
