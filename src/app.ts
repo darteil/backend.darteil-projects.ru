@@ -20,7 +20,7 @@ router.get('/', async (ctx, next) => {
 app.use(
   cors({
     origin: '*',
-    allowHeaders: ['Content-Type', 'application/json'],
+    allowHeaders: ['Content-Type', 'Accept'],
   }),
 );
 app.use(json());
