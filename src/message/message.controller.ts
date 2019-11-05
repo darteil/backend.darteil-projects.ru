@@ -48,4 +48,16 @@ router.post('/', async (ctx: Koa.Context) => {
   };
 });
 
+router.delete('/', async (ctx: Koa.Context) => {
+  const messageRepo: Repository<Message> = getRepository(Message);
+  const message: Message = await messageRepo.findOne(ctx.request.query.id);
+  const messageId = message.id;
+
+  await messageRepo.remove(message);
+
+  ctx.body = {
+    data: { [messageId]: 'removed' },
+  };
+});
+
 export default router;
