@@ -50,7 +50,7 @@ router.post('/', async (ctx: Koa.Context) => {
 
 router.delete('/', async (ctx: Koa.Context) => {
   const messageRepo: Repository<Message> = getRepository(Message);
-  const message: Message = await messageRepo.findOne(ctx.request.query.id);
+  const message = await messageRepo.findOne(ctx.params.id);
   const messageId = message.id;
 
   await messageRepo.remove(message);
